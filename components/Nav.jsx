@@ -82,6 +82,42 @@ function Nav() {
           </>
         )}
       </div>
+
+      {/* -------------------------------mobile navigation--------------------------- */}
+
+      <div className="sm:hidden flex relative">
+        {/*--------------------- if user is logged in------------------------ */}
+
+        {isUserLoggedIn ? (
+          <div className="flex">
+            <Image
+              src={'assets/images/logo.svg'}
+              className="rounded-full"
+              alt="profile"
+              width={37}
+              height={37}
+              onClick={() => {}}
+            />
+          </div>
+        ) : (
+          <>
+            {/*--------------------- if user is not logged in------------------------ */}
+
+            {providers &&
+              //  "Object.values" extract the values of an object and work with them as an array.
+
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  onClick={() => SignIn(provider.id)}
+                  className="black-btn"
+                >
+                  Sign In
+                </button>
+              ))}
+          </>
+        )}
+      </div>
     </nav>
   );
 }
