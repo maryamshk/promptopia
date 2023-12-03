@@ -15,6 +15,7 @@ function Nav() {
   const isUserLoggedIn = true;
 
   const [providers, setProviders] = useState(null);
+  const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
     const setProviders = async () => {
@@ -96,8 +97,41 @@ function Nav() {
               alt="profile"
               width={37}
               height={37}
-              onClick={() => {}}
+              onClick={() => setToggleDropdown((prev) => !prev)}
             />
+            {toggleDropdown && (
+              <div className="dropdown">
+                {/*---------------------------- profile link -----------------------------*/}
+                <Link
+                  href={'/profile'}
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  My Profile
+                </Link>
+
+                {/* ------------------------ create prompt link----------------------------- */}
+                <Link
+                  href={'/create-prompt'}
+                  className="dropdown_link"
+                  onClick={() => setToggleDropdown(false)}
+                >
+                  Create Prompt
+                </Link>
+
+                {/* ---------------button link------------------------------ */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setToggleDropdown(false);
+                    signOut();
+                  }}
+                  className="mt-5 w-full black_btn"
+                >
+                  Sign Out
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <>
